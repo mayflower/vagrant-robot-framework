@@ -12,7 +12,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Every Vagrant virtual environment requires a box to build off of.
   config.vm.box = "ubuntu/trusty32"
 
-  config.vm.hostname = "robot-framework.local"
+  config.vm.hostname = "robot-framework"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -26,7 +26,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
-  config.vm.network "private_network", ip: "192.168.97.101"
+  config.vm.network "private_network", ip: "192.168.33.12"
 
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
@@ -62,7 +62,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # config.ssh.pty = true
 
-  paths = Dir[File.join('provision.d', '??-*')]
+  paths = Dir[File.join('provision.d', '{0,1,2,3,4,5,6}[0-9]-*')]
   paths.map do |path|
     config.vm.provision :shell, :inline => "echo Run #{path} ..."
     config.vm.provision :shell, :path => path
